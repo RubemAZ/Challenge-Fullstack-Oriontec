@@ -13,4 +13,4 @@ class AlterCustomerUseCase {
     }
 }
 
-export default RegisterCustomerUseCase;
+export default AlterCustomerUseCase;
