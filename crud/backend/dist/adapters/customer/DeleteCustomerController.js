@@ -5,14 +5,18 @@ class DeleteCustomerController {
         this.DeleteCustomerUseCase = DeleteCustomerUseCase;
     }
     async handle(req, res) {
-        const { name, email, document } = req.body;
+        const { id } = req.params; // Pegando o ID dos parâmetros da URL
         try {
-            await this.DeleteCustomerUseCase.execute({ name, email, document });
-            res.status(201).send({ message: 'Customer Deleted successfully' });
+            await this.DeleteCustomerUseCase.execute(id); // Passando apenas o ID
+            res.status(200).send({ message: "Cliente deletado com sucesso" });
         }
         catch (error) {
-            const err = error;
-            res.status(400).send({ error: err.message });
+            if (error instanceof Error) {
+                res.status(400).send({ error: error.message }); // Tratando erro como instância de Error
+            }
+            else {
+                res.status(400).send({ error: "Erro desconhecido" });
+            }
         }
     }
 }

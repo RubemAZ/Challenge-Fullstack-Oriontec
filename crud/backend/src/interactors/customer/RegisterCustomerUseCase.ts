@@ -3,13 +3,9 @@ import CustomerRepository from '../../external/db/customer/CustomerRepository';
 class RegisterCustomerUseCase {
     constructor(private customerRepository: CustomerRepository) {}
 
-    async execute(data: { name: string; email: string; document: string }): Promise<void> {
-        // Validações e lógica de negócio
-        if (!data.name || !data.email || !data.document) {
-            throw new Error('Invalid data');
-        }
-
-        await this.customerRepository.add(data);  // Adiciona cliente no repositório
+    async execute(data: any): Promise<void> {
+        // Validação dos dados pode ser feita aqui, se necessário
+        await this.customerRepository.add(data); // Adiciona cliente no repositório
     }
 }
 

@@ -4,12 +4,9 @@ class DeleteCustomerUseCase {
     constructor(customerRepository) {
         this.customerRepository = customerRepository;
     }
-    async execute(data) {
-        // Validações e lógica de negócio
-        if (!data.name || !data.email || !data.document) {
-            throw new Error('Invalid data');
-        }
-        await this.customerRepository.add(data); // Adiciona cliente no repositório
+    async execute(id) {
+        // Certifique-se de que o ID existe e é válido antes de tentar deletar
+        await this.customerRepository.delete(id); // Deleta cliente do repositório
     }
 }
 exports.default = DeleteCustomerUseCase;

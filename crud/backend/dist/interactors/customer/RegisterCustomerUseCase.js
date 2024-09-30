@@ -5,10 +5,7 @@ class RegisterCustomerUseCase {
         this.customerRepository = customerRepository;
     }
     async execute(data) {
-        // Validações e lógica de negócio
-        if (!data.name || !data.email || !data.document) {
-            throw new Error('Invalid data');
-        }
+        // Validação dos dados pode ser feita aqui, se necessário
         await this.customerRepository.add(data); // Adiciona cliente no repositório
     }
 }

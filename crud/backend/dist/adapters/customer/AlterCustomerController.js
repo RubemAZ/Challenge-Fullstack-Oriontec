@@ -5,14 +5,19 @@ class AlterCustomerController {
         this.AlterCustomerUseCase = AlterCustomerUseCase;
     }
     async handle(req, res) {
-        const { name, email, document } = req.body;
+        const { id } = req.params; // Pegando o ID dos parâmetros da URL
+        const { name, email, document } = req.body; // Pegando os dados do corpo da requisição
         try {
-            await this.AlterCustomerUseCase.execute({ name, email, document });
-            res.status(201).send({ message: 'Customer Alterd successfully' });
+            await this.AlterCustomerUseCase.execute(id, { name, email, document }); // Passando o ID e os dados
+            res.status(200).send({ message: "Cliente atualizado com sucesso" });
         }
         catch (error) {
-            const err = error;
-            res.status(400).send({ error: err.message });
+            if (error instanceof Error) {
+                res.status(400).send({ error: error.message }); // Tratando erro como instância de Error
+            }
+            else {
+                res.status(400).send({ error: "Erro desconhecido" });
+            }
         }
     }
 }
