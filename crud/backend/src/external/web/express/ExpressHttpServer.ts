@@ -1,7 +1,8 @@
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import AllCustomerController from '../controllers/AllCustomerController'; // Importar o controller
+import AllCustomerController from '../../../main/controllers/AllCustomerController';
+
 
 class ExpressHttpServer {
   private app: express.Application;

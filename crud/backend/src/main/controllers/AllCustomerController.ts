@@ -1,5 +1,3 @@
-// src/main/controllers/AllCustomerController.ts
-
 import { Request, Response } from 'express';
 
 // Simulando um banco de dados com um array

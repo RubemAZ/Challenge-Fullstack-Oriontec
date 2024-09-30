@@ -10,7 +10,8 @@ class RegisterCustomerController {
             await this.registerCustomerUseCase.execute({ name, email, document });
             res.status(201).send({ message: 'Customer registered successfully' });
         } catch (error) {
-            res.status(400).send({ error: error.message });
+            const err = error as Error;
+            res.status(400).send({ error: err.message });
         }
     }
 }

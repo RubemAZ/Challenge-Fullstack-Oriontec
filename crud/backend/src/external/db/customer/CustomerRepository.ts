@@ -1,19 +1,29 @@
-import { Pool } from 'node-firebird'; // Biblioteca para conectar ao Firebird
+import { pool } from 'node-firebird'; // Importa o pool do node-firebird
 
 class CustomerRepository {
-    private pool: Pool;
+    private connectionPool: any;
 
-    constructor(pool: Pool) {
-        this.pool = pool;
+    constructor() {
+        // Configuração do pool de conexões
+        this.connectionPool = pool(5, { /* opções de configuração */ });
     }
 
-    async add(customer: { name: string; email: string; document: string }): Promise<void> {
-        // Query para adicionar o cliente ao Firebird
-        const query = `INSERT INTO customers (name, email, document) VALUES (?, ?, ?)`;
-        await this.pool.query(query, [customer.name, customer.email, customer.document]);
+    // Exemplo de método para listar clientes
+    public async getAllCustomers(): Promise<any[]> {
+        return new Promise((resolve, reject) => {
+            this.connectionPool.get((err: any, client: any) => {
+                if (err) return reject(err);
+
+                client.query('SELECT * FROM customers', (err: any, result: any) => {
+                    client.release(); // Libera a conexão
+                    if (err) return reject(err);
+                    resolve(result);
+                });
+            });
+        });
     }
 
-    // Métodos para editar, deletar e listar clientes
+    // Outros métodos para manipular clientes...
 }
 
 export default CustomerRepository;
