@@ -1,4 +1,13 @@
-import FirebirdConnection from '../firebird/FirebirdConnection'; // Ajuste o caminho se necessário
+import FirebirdConnection from '../firebird/FirebirdConnection';
+import firebird from 'node-firebird';
+
+const options = {
+    host: 'localhost',
+    port: 3050,
+    database: 'D:\\Projects\\Challenge-Fullstack-Oriontec\\crud\\database\\CLIENTDATA.FDB',
+    user: 'SYSDBA',
+    password: 'masterkey',
+};
 
 class CustomerRepository {
     // Adicionar novo cliente
@@ -9,9 +18,25 @@ class CustomerRepository {
         return new Promise((resolve, reject) => {
             db.query(query, [data.name, data.email, data.document], (err) => {
                 if (err) {
-                    reject(err); // Se ocorrer um erro, rejeita a promise
+                    reject(err);
                 } else {
-                    resolve(); // Se tudo ocorrer bem, resolve a promise
+                    resolve();
+                }
+            });
+        });
+    }
+
+    // Listar todos os clientes
+    async getAll(): Promise<any[]> {
+        const db = await FirebirdConnection.getConnection();
+        const query = 'SELECT * FROM customers';
+
+        return new Promise((resolve, reject) => {
+            db.query(query, [], (err, result) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(result); // Retorna a lista de clientes
                 }
             });
         });
@@ -19,15 +44,15 @@ class CustomerRepository {
 
     // Atualizar cliente existente
     async update(id: string, data: any): Promise<void> {
-        const db = await FirebirdConnection.getConnection(); // Obtem a conexão com o banco de dados
+        const db = await FirebirdConnection.getConnection();
         const query = 'UPDATE customers SET name = ?, email = ?, document = ? WHERE id = ?';
         
         return new Promise((resolve, reject) => {
             db.query(query, [data.name, data.email, data.document, id], (err) => {
                 if (err) {
-                    reject(err); // Se ocorrer um erro, rejeita a promise
+                    reject(err);
                 } else {
-                    resolve(); // Se tudo ocorrer bem, resolve a promise
+                    resolve();
                 }
             });
         });
@@ -35,15 +60,27 @@ class CustomerRepository {
 
     // Deletar cliente pelo ID
     async delete(id: string): Promise<void> {
-        const db = await FirebirdConnection.getConnection(); // Obtem a conexão com o banco de dados
+        const db = await FirebirdConnection.getConnection();
         const query = 'DELETE FROM customers WHERE id = ?';
         
         return new Promise((resolve, reject) => {
             db.query(query, [id], (err) => {
                 if (err) {
-                    reject(err); // Se ocorrer um erro, rejeita a promise
+                    reject(err);
                 } else {
-                    resolve(); // Se tudo ocorrer bem, resolve a promise
+                    resolve();
+                }
+            });
+        });
+    }
+
+    static async getConnection(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            firebird.attach(options, (err: Error | null, db: any) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(db);
                 }
             });
         });

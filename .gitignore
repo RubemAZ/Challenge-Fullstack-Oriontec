@@ -1,0 +1,11 @@
+/crud/database/
+/backend/node_modules/
+/frontend/node_modules/
+
+/# Optional: Ignore other common files and folders
+.DS_Store  # Ignore macOS specific file
+*.log      # Ignore log files
+*.env      # Ignore environment files
+.env.*
+dist/      # Ignore build output folders (common in both back and front)
+build/
