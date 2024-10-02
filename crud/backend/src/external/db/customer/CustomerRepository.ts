@@ -25,6 +25,8 @@ class CustomerRepository {
             });
         });
     }
+    
+    
 
     // Listar todos os clientes
     async getAll(): Promise<any[]> {
