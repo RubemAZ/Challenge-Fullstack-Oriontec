@@ -11,10 +11,6 @@ const options = {
 
 console.log(options)
 
-// aqui pode estar o problema porque?
-// é uma suspeita, por causa do seu import do bco de dados ai... vamos mover ele pra dentreo do projeto então tem que fechar tudo
-
-
 class CustomerRepository {
     // Adicionar novo cliente
     async add(data: any): Promise<void> {
