@@ -1,7 +1,7 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response } from 'express'; 
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import AllCustomerController from '../../../main/controllers/AllCustomerController';
+import customerRoutes from '../../../main/routes/customerRoutes';
 
 class ExpressHttpServer {
   private app: express.Application;
@@ -26,13 +26,10 @@ class ExpressHttpServer {
       res.status(200).send({ status: 'Server is running!' });
     });
 
-    // Rota para listar todas as pessoas
-    this.app.get('/api/customers', (req: Request, res: Response) => {
-      AllCustomerController.handle(req, res); // Chama o controller
-    });
+    // Rotas para operações de clientes
+    this.app.use('/api', customerRoutes); // Integra as rotas de clientes
 
-    // Outras rotas para adicionar, editar e deletar clientes
-    // ...
+    // Outras rotas, se necessário, podem ser adicionadas aqui...
   }
 
   public start(): void {
@@ -45,3 +42,5 @@ class ExpressHttpServer {
 // Inicializando o servidor
 const server = new ExpressHttpServer();
 server.start(); // Isso deve iniciar o servidor
+
+export default ExpressHttpServer;  

@@ -12,7 +12,7 @@ const options = {
 class CustomerRepository {
     // Adicionar novo cliente
     async add(data: any): Promise<void> {
-        const db = await FirebirdConnection.getConnection(); // Obtem a conexão com o banco de dados
+        const db = await FirebirdConnection.getConnection();
         const query = 'INSERT INTO customers (name, email, document) VALUES (?, ?, ?)';
         
         return new Promise((resolve, reject) => {
@@ -36,7 +36,7 @@ class CustomerRepository {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(result); // Retorna a lista de clientes
+                    resolve(result);
                 }
             });
         });
@@ -74,6 +74,39 @@ class CustomerRepository {
         });
     }
 
+    // Buscar cliente por ID
+    async getById(id: string): Promise<any> {
+        const db = await FirebirdConnection.getConnection();
+        const query = 'SELECT * FROM customers WHERE id = ?';
+
+        return new Promise((resolve, reject) => {
+            db.query(query, [id], (err, result) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(result[0]); // Retorna o cliente encontrado
+                }
+            });
+        });
+    }
+
+    // Buscar clientes por nome
+    async searchByName(name: string): Promise<any[]> {
+        const db = await FirebirdConnection.getConnection();
+        const query = 'SELECT * FROM customers WHERE name LIKE ?';
+
+        return new Promise((resolve, reject) => {
+            db.query(query, [`%${name}%`], (err, result) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(result); // Retorna a lista de clientes que correspondem ao nome
+                }
+            });
+        });
+    }
+
+    // Conexão com o banco de dados Firebird
     static async getConnection(): Promise<any> {
         return new Promise((resolve, reject) => {
             firebird.attach(options, (err: Error | null, db: any) => {
