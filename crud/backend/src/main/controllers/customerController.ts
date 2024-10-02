@@ -10,12 +10,13 @@ class CustomerController {
 
     // Adicionar um novo cliente
     async add(req: Request, res: Response): Promise<void> {
+        console.log(req.body)
         try {
             const data = req.body;
             await this.customerRepository.add(data);
             res.status(201).send({ message: 'Cliente adicionado com sucesso!' });
         } catch (error) {
-            res.status(500).send({ message: 'Erro ao adicionar cliente', error });
+            res.status(400).send({ message: 'Erro ao adicionar cliente', error });
         }
     }
 
