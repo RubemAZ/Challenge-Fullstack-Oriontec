@@ -4,7 +4,7 @@ import firebird from 'node-firebird';
 const options = {
     host: 'localhost',
     port: 3050,
-    database: 'D:\\Projects\\Challenge-Fullstack-Oriontec\\crud\\database\\CLIENTDATA.FDB',
+    database: 'D:\\Projects\\database\\CLIENTDATA.FDB',
     user: 'SYSDBA',
     password: 'masterkey',
 };
