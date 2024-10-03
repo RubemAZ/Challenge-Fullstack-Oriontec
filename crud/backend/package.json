@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev src/external/web/express/ExpressHttpServer.ts"
+    "dev": "ts-node-dev src/main/index.ts"
   },
   "author": "",
   "license": "ISC",

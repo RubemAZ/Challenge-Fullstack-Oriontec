@@ -1,12 +1,12 @@
 import firebird from 'node-firebird';
-
+ 
 class FirebirdConnection {
     private static options: firebird.Options = {
         host: 'localhost',
         port: 3050,
-        database: `${process.cwd()}/domain/database/CLIENTDATA.FDB`,
-        user: 'SYSDBA',
-        password: 'masterkey',
+        database: `${process.cwd()}/src/domain/database/CLIENTDATA.FDB`,
+        user: 'SYSDBA', 
+        password: '1234',
     };
     
     public static getConnection(): Promise<firebird.Database> {

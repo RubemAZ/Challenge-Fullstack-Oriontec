@@ -1,21 +1,9 @@
 import FirebirdConnection from '../firebird/FirebirdConnection';
-import firebird from 'node-firebird';
-
-const options = {
-    host: 'localhost',
-    port: 3050,
-    database: `${process.cwd()}/domain/database/CLIENTDATA.FDB`,
-    user: 'SYSDBA',
-    password: 'masterkey',
-};
-
-console.log(options)
 
 class CustomerRepository {
     // Adicionar novo cliente
     async add(data: any): Promise<void> {
         const db = await FirebirdConnection.getConnection();
-        console.log(db)
         const query = 'INSERT INTO customers (name, email, document) VALUES (?, ?, ?)';
         
         return new Promise((resolve, reject) => {
@@ -27,9 +15,7 @@ class CustomerRepository {
                 }
             });
         });
-    }
-    
-    
+    }    
 
     // Listar todos os clientes
     async getAll(): Promise<any[]> {
@@ -106,19 +92,6 @@ class CustomerRepository {
                     reject(err);
                 } else {
                     resolve(result); // Retorna a lista de clientes que correspondem ao nome
-                }
-            });
-        });
-    }
-
-    // Conexão com o banco de dados Firebird
-    static async getConnection(): Promise<any> {
-        return new Promise((resolve, reject) => {
-            firebird.attach(options, (err: Error | null, db: any) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(db);
                 }
             });
         });
