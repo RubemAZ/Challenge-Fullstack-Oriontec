@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 interface Customer {
   id: number;
@@ -11,12 +12,26 @@ const CustomerList: React.FC = () => {
   const [customers, setCustomers] = useState<Customer[]>([]);
 
   useEffect(() => {
-    // Chama o serviço que buscará os dados da API
-    fetch('http://localhost:3001/customers')  // Atualize a URL aqui
-      .then((response) => response.json())
-      .then((data) => setCustomers(data))
-      .catch((error) => console.error('Erro ao buscar clientes:', error));
+    // Chama o serviço que buscará os dados da API usando Axios
+    axios.get('http://localhost:3000/api/customers')
+      .then((response) => {
+        setCustomers(response.data);
+      })
+      .catch((error) => {
+        console.error('Erro ao buscar clientes:', error);
+      });
   }, []);
+
+  const deleteCustomer = (id: number) => {
+    axios.delete(`http://localhost:3000/api/customers/${id}`)
+      .then(() => {
+        alert('Cliente deletado com sucesso!');
+        setCustomers(customers.filter((customer) => customer.id !== id)); // Remove o cliente da lista
+      })
+      .catch((error) => {
+        console.error('Erro ao deletar cliente:', error);
+      });
+  };
 
   return (
     <div>
@@ -27,6 +42,7 @@ const CustomerList: React.FC = () => {
             <th>Nome</th>
             <th>Email</th>
             <th>Documento</th>
+            <th>Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -35,6 +51,9 @@ const CustomerList: React.FC = () => {
               <td>{customer.name}</td>
               <td>{customer.email}</td>
               <td>{customer.document}</td>
+              <td>
+                <button onClick={() => deleteCustomer(customer.id)}>Deletar</button>
+              </td>
             </tr>
           ))}
         </tbody>

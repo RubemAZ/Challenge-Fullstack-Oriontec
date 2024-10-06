@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createCustomer } from '@/src/external/api/customers/customerService';
 
 const CustomerForm: React.FC = () => {
   const [name, setName] = useState('');
@@ -7,58 +8,57 @@ const CustomerForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const newCustomer = { name, email, document };
     try {
-      const response = await fetch('/api/customers', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newCustomer),
-      });
-
-      if (response.ok) {
-        // Cliente foi criado com sucesso
-        alert('Cliente criado com sucesso');
-      } else {
-        // Lidar com erro
-        alert('Erro ao criar cliente');
-      }
+      await createCustomer({
+        name,
+        email,
+        document
+      })
+      alert('Cliente adicionado com sucesso!');
+      // Limpar os campos do formulário
+      setName('');
+      setEmail('');
+      setDocument('');
     } catch (error) {
-      console.error('Erro ao enviar dados:', error);
+      console.error('Erro ao adicionar cliente:', error);
+      alert('Erro ao adicionar cliente.');
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Nome</label>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label>Documento</label>
-        <input
-          type="text"
-          value={document}
-          onChange={(e) => setDocument(e.target.value)}
-          required
-        />
-      </div>
-      <button type="submit">Salvar Cliente</button>
-    </form>
+    <div>
+      <h2>Adicionar Cliente</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Nome:</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>E-mail:</label>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Documento:</label>
+          <input
+            type="text"
+            value={document}
+            onChange={(e) => setDocument(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit">Adicionar</button>
+      </form>
+    </div>
   );
 };
 

@@ -8,10 +8,11 @@ export interface CustomerData {
   class CustomerPresenter {
     static present(data: any): CustomerData {
       return {
-        id: data.id,
-        name: data.name,
-        email: data.email,
-        document: data.document,
+        id: data.ID,
+        
+        name: data.NAME,
+        email: data.EMAIL,
+        document: data.DOCUMENT,
       };
     }
   }
