@@ -12,7 +12,7 @@ const CustomerList: React.FC = () => {
 
   useEffect(() => {
     // Chama o serviço que buscará os dados da API
-    fetch('/api/customers')
+    fetch('http://localhost:3001/customers')  // Atualize a URL aqui
       .then((response) => response.json())
       .then((data) => setCustomers(data))
       .catch((error) => console.error('Erro ao buscar clientes:', error));
