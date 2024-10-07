@@ -9,7 +9,6 @@ export interface CustomerData {
     static present(data: any): CustomerData {
       return {
         id: data.ID,
-        
         name: data.NAME,
         email: data.EMAIL,
         document: data.DOCUMENT,

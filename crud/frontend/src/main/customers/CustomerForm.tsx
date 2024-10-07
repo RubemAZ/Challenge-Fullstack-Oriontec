@@ -1,62 +1,44 @@
 import React, { useState } from 'react';
-import { createCustomer } from '@/src/external/api/customers/customerService';
 
 const CustomerForm: React.FC = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [document, setDocument] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      await createCustomer({
-        name,
-        email,
-        document
-      })
-      alert('Cliente adicionado com sucesso!');
-      // Limpar os campos do formulário
-      setName('');
-      setEmail('');
-      setDocument('');
-    } catch (error) {
-      console.error('Erro ao adicionar cliente:', error);
-      alert('Erro ao adicionar cliente.');
-    }
-  };
-
   return (
     <div>
       <h2>Adicionar Cliente</h2>
-      <form onSubmit={handleSubmit}>
+      <form id="customer-form">
         <div>
-          <label>Nome:</label>
+          <label htmlFor="customer-name">Nome:</label>
           <input
             type="text"
+            id="customer-name"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
           />
         </div>
         <div>
-          <label>E-mail:</label>
+          <label htmlFor="customer-email">E-mail:</label>
           <input
             type="email"
+            id="customer-email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
         <div>
-          <label>Documento:</label>
+          <label htmlFor="customer-document">Documento:</label>
           <input
             type="text"
+            id="customer-document"
             value={document}
             onChange={(e) => setDocument(e.target.value)}
             required
           />
         </div>
-        <button type="submit">Adicionar</button>
       </form>
     </div>
   );

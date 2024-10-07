@@ -1,24 +1,28 @@
-import './globals.css';  // Arquivo global de estilos
+"use client";
+import React, { useState } from 'react';
 import { ReactNode } from 'react';
+import Navbar from './components/Navbar';
+import './globals.css';
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 const RootLayout = ({ children }: LayoutProps) => {
+  const [searchQuery, setSearchQuery] = useState(''); // Armazena a query de pesquisa
+
   return (
     <html lang="pt-BR">
       <head>
-        <title>Sistema de Gerenciamento de Clientes</title>
         <meta name="description" content="Aplicação para gerenciar registros de clientes." />
       </head>
       <body className="bg-gray-100 text-gray-900">
-        <header className="p-4 bg-blue-500 text-white text-center">
-          <h1 className="text-3xl font-bold">Sistema de Gerenciamento de Clientes</h1>
-        </header>
+        {/* Passa a função onSearch para a Navbar */}
+        <Navbar onSearch={setSearchQuery} />
 
         <main className="container mx-auto py-10">
-          {children}  {/* Este children renderiza o conteúdo das páginas */}
+          {/* Passa o valor da query de pesquisa como prop */}
+          {React.cloneElement(children as React.ReactElement<any>, { searchQuery })}
         </main>
 
         <footer className="p-4 bg-gray-800 text-white text-center mt-10">

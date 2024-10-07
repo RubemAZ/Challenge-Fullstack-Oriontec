@@ -3,7 +3,7 @@ import api from '@/src/adapters/http/api'
 export async function fetchCustomers(): Promise<any> {
     const response = await api.get('/customers');
     if (response.status >= 400) {
-      throw new Error('Erro ao buscar clientes');
+      throw new Error('Erro ao buscar clientes.');
     }
 
     return response.data;
@@ -14,7 +14,7 @@ export async function fetchCustomers(): Promise<any> {
   
     console.log(response)
     if (response.status >= 400) {
-      throw new Error('Falha ao cadastrar cliente')
+      throw new Error('Falha ao cadastrar cliente.')
     }
   }
   

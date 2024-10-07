@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 interface UpdateCustomerFormProps {
-  id: string; // Passe o ID do cliente a ser atualizado
+  id: string;
 }
 
 const UpdateCustomerForm: React.FC<UpdateCustomerFormProps> = ({ id }) => {

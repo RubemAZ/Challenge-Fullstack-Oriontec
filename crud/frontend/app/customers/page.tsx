@@ -19,8 +19,8 @@ const CustomersPage = () => {
     };
 
     customerList();
-  }, []); // Executa apenas uma vez ao montar o componente
-
+  }, []);
+  
   return (
     <div>
       <h1>Lista de Clientes</h1>

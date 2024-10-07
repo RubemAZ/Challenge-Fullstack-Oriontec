@@ -12,9 +12,9 @@ const CustomerList: React.FC = () => {
   const [customers, setCustomers] = useState<Customer[]>([]);
 
   useEffect(() => {
-    // Chama o serviço que buscará os dados da API usando Axios
     axios.get('http://localhost:3000/api/customers')
       .then((response) => {
+        console.log('Clientes recebidos:', response.data); // Verifique a resposta da API
         setCustomers(response.data);
       })
       .catch((error) => {
@@ -36,28 +36,32 @@ const CustomerList: React.FC = () => {
   return (
     <div>
       <h1>Lista de Clientes</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>Documento</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {customers.map((customer) => (
-            <tr key={customer.id}>
-              <td>{customer.name}</td>
-              <td>{customer.email}</td>
-              <td>{customer.document}</td>
-              <td>
-                <button onClick={() => deleteCustomer(customer.id)}>Deletar</button>
-              </td>
+      {customers.length === 0 ? ( // Verifica se a lista está vazia
+        <p>Nenhum cliente encontrado.</p>
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Documento</th>
+              <th>Ações</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {customers.map((customer) => (
+              <tr key={customer.id}>
+                <td>{customer.name}</td>
+                <td>{customer.email}</td>
+                <td>{customer.document}</td>
+                <td>
+                  <button onClick={() => deleteCustomer(customer.id)}>Deletar</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };

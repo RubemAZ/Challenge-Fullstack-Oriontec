@@ -1,24 +1,43 @@
-import Link from 'next/link';
+"use client";
+import React, { useState, useEffect } from 'react';
+import CustomersPage from './customers/page';
 
-const HomePage: React.FC = () => {
+const CustomersPageList = ({ searchQuery }: { searchQuery: string }) => {
+  const [customers, setCustomers] = useState<any[]>([]);
+  const [filteredCustomers, setFilteredCustomers] = useState<any[]>([]);
+
+  // Função para buscar clientes no backend
+  const fetchCustomers = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/api/customers');
+      if (!response.ok) {
+        throw new Error('Erro ao buscar clientes');
+      }
+      const data = await response.json();
+      setCustomers(data);
+      setFilteredCustomers(data); // Inicialmente, todos os clientes são exibidos
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  // Função chamada quando o campo de busca é alterado
+  useEffect(() => {
+    const filtered = customers.filter((customer) =>
+      customer.name?.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredCustomers(filtered); // Atualiza os clientes filtrados com base na busca
+  }, [searchQuery, customers]); // Reexecuta o filtro sempre que a query de busca ou lista de clientes mudar
+
+  useEffect(() => {
+    fetchCustomers();
+  }, []);
+
   return (
-    <div className="container mx-auto text-center">
-      <h1 className="text-4xl font-bold mt-10">Bem-vindo ao Sistema de Gerenciamento de Clientes</h1>
-      <p className="mt-5">Utilize as opções abaixo para navegar no sistema.</p>
-
-      <div className="mt-10">
-        <Link href="/customers" className="text-blue-500 underline">
-          Ver Lista de Clientes
-        </Link>
-      </div>
-
-      <div className="mt-4">
-        <Link href="/customers/new" className="text-blue-500 underline">
-          Cadastrar Novo Cliente
-        </Link>
-      </div>
+    <div>
+      <CustomersPage/>
     </div>
   );
 };
 
-export default HomePage;
+export default CustomersPageList;
