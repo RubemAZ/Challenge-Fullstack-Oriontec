@@ -26,10 +26,7 @@ class ExpressHttpServer {
       res.status(200).send({ status: 'Server is running!' });
     });
 
-    // Rotas para operações de clientes
-    this.app.use('/api', customerRoutes); // Integra as rotas de clientes
-
-    // Outras rotas, se necessário, podem ser adicionadas aqui...
+    this.app.use('/api', customerRoutes); 
   }
 
   public start(): void {
@@ -39,8 +36,7 @@ class ExpressHttpServer {
   }
 }
 
-// Inicializando o servidor
 const server = new ExpressHttpServer();
-server.start(); // Isso deve iniciar o servidor
+server.start();
 
 export default ExpressHttpServer;  

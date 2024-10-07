@@ -16,7 +16,7 @@ class CustomerController {
             await this.customerRepository.add(data);
             res.status(201).send({ message: 'Cliente adicionado com sucesso!' });
         } catch (error) {
-            res.status(400).send({ message: 'Erro ao adicionar cliente', error });
+            res.status(400).send({ message: 'Erro ao adicionar cliente.', error });
         }
     }
 
@@ -26,7 +26,7 @@ class CustomerController {
             const customers = await this.customerRepository.getAll();
             res.status(200).send(customers);
         } catch (error) {
-            res.status(500).send({ message: 'Erro ao listar clientes', error });
+            res.status(500).send({ message: 'Erro ao listar clientes.', error });
         }
     }
 
@@ -38,7 +38,7 @@ class CustomerController {
             await this.customerRepository.update(id, data);
             res.status(200).send({ message: 'Cliente atualizado com sucesso!' });
         } catch (error) {
-            res.status(500).send({ message: 'Erro ao atualizar cliente', error });
+            res.status(500).send({ message: 'Erro ao atualizar cliente.', error });
         }
     }
 
@@ -49,7 +49,7 @@ class CustomerController {
             await this.customerRepository.delete(id);
             res.status(200).send({ message: 'Cliente deletado com sucesso!' });
         } catch (error) {
-            res.status(500).send({ message: 'Erro ao deletar cliente', error });
+            res.status(500).send({ message: 'Erro ao deletar cliente.', error });
         }
     }
 
@@ -61,10 +61,10 @@ class CustomerController {
             if (customer) {
                 res.status(200).send(customer);
             } else {
-                res.status(404).send({ message: 'Cliente não encontrado' });
+                res.status(404).send({ message: 'Cliente não encontrado.' });
             }
         } catch (error) {
-            res.status(500).send({ message: 'Erro ao obter cliente', error });
+            res.status(500).send({ message: 'Erro ao obter cliente.', error });
         }
     }
 
@@ -76,10 +76,10 @@ class CustomerController {
             if (customers.length > 0) {
                 res.status(200).send(customers);
             } else {
-                res.status(404).send({ message: 'Nenhum cliente encontrado com o nome informado' });
+                res.status(404).send({ message: 'Nenhum cliente encontrado com o nome informado.' });
             }
         } catch (error) {
-            res.status(500).send({ message: 'Erro ao buscar clientes', error });
+            res.status(500).send({ message: 'Erro ao buscar clientes.', error });
         }
     }
 }

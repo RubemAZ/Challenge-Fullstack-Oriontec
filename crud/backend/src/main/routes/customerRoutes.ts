@@ -23,7 +23,7 @@ const validateCustomer = (req: Request, res: Response, next: NextFunction) => {
         errors: error.errors,
       });
     } else {
-      next(error); // Caso seja um erro desconhecido, passa para o próximo middleware
+      next(error);
     }
   }
 };

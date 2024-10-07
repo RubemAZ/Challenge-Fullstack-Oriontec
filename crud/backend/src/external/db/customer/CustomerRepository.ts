@@ -75,7 +75,7 @@ class CustomerRepository {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(result[0]); // Retorna o cliente encontrado
+                    resolve(result[0]);
                 }
             });
         });
@@ -91,7 +91,7 @@ class CustomerRepository {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve(result); // Retorna a lista de clientes que correspondem ao nome
+                    resolve(result);
                 }
             });
         });

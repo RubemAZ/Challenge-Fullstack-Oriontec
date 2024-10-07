@@ -15,5 +15,4 @@ class RegisterCustomerController {
         }
     }
 }
-
 export default RegisterCustomerController;
