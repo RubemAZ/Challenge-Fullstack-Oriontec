@@ -7,6 +7,7 @@ import {deleteCustomer } from '@/src/external/api/customers/deleteCustomer';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
+
 const CustomersPage = () => {
   const [customers, setCustomers] = useState<CustomerData[]>([]);
   const MySwal = withReactContent(Swal);

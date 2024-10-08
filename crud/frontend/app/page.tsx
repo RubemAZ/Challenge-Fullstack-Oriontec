@@ -1,7 +1,6 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import CustomersPage from './customers/page';
-
+import React, { useState, useEffect } from 'react'
+import CustomersPage from './customers/page'
 const CustomersPageList = ({ searchQuery }: { searchQuery: string }) => {
   const [customers, setCustomers] = useState<any[]>([]);
   const [filteredCustomers, setFilteredCustomers] = useState<any[]>([]);

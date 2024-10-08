@@ -16,18 +16,17 @@ const RootLayout = ({ children }: LayoutProps) => {
       <head>
         <meta name="description" content="Aplicação para gerenciar registros de clientes." />
       </head>
-      <body className="bg-gray-100 text-gray-900">
+      <body className="min-h-screen flex flex-col bg-gray-100 text-gray-900">
         {/* Passa a função onSearch para a Navbar */}
         <Navbar onSearch={setSearchQuery} />
 
-        <main className="container mx-auto py-10">
+        <main className="container mx-auto py-10 flex-grow">
           {/* Passa o valor da query de pesquisa como prop */}
           {React.cloneElement(children as React.ReactElement<any>, { searchQuery })}
         </main>
-
-        <footer className="p-4 bg-gray-800 text-white text-center mt-10">
-          <p>© 2024 Sistema de Gerenciamento de Clientes</p>
-        </footer>
+          <footer className="p-4 bg-gray-800 text-white text-center mt-10">
+            <p>© 2024 Oriontec Desafio FullStack Sistema de Gerenciamento de Clientes</p>
+          </footer>
       </body>
     </html>
   );
