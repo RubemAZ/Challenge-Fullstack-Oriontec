@@ -79,7 +79,7 @@ const Navbar: React.FC<NavbarProps> = ({ onSearch }) => {
 
           <button
             onClick={handleAddCustomer}
-            className="bg-green-500 text-white px-4 py-2 rounded"
+            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
           >
             Adicionar Cliente
           </button>

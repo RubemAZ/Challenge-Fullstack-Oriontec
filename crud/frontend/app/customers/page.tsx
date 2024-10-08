@@ -115,7 +115,7 @@ const handleEdit = (customer: CustomerData) => {
               <td className="border border-gray-300 p-2">{customer.document}</td>
               <td className="border border-gray-300 p-2 flex justify-center">
                 <button
-                  className="bg-green-500 text-white px-4 py-1 rounded mr-2 hover:bg-blue-600"
+                  className="bg-green-500 text-white px-4 py-1 rounded mr-2 hover:bg-green-600"
                   onClick={() => handleEdit(customer)}
                 >
                   Editar
