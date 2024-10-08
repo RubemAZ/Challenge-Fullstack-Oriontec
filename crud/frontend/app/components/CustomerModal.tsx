@@ -8,7 +8,7 @@ const MySwal = withReactContent(Swal);
 interface CustomerModalProps {
   initialData?: { id?: number, name?: string, email?: string, document?: string };
   onSubmit: (data: { id?: number, name: string, email: string, document: string }) => void;
-  mode: 'create' | 'edit'; // Define se é para criar ou editar
+  mode: 'create' | 'edit';
 }
 
 const CustomerModal: React.FC<CustomerModalProps> = ({ initialData = {}, onSubmit, mode }) => {

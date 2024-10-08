@@ -35,6 +35,10 @@ const handleEdit = (customer: CustomerData) => {
     `,
     showCancelButton: true,
     confirmButtonText: 'Salvar',
+    customClass: {
+      confirmButton: 'bg-green-500 text-white',   // Classe para o botão de confirmação
+      cancelButton: 'bg-red-500 text-white'      // Classe para o botão de cancelamento
+    },
     preConfirm: () => {
       const name = (document.getElementById('customer-name') as HTMLInputElement).value;
       const email = (document.getElementById('customer-email') as HTMLInputElement).value;
@@ -110,7 +114,7 @@ const handleEdit = (customer: CustomerData) => {
               <td className="border border-gray-300 p-2">{customer.document}</td>
               <td className="border border-gray-300 p-2 flex justify-center">
                 <button
-                  className="bg-blue-500 text-white px-4 py-1 rounded mr-2 hover:bg-blue-600"
+                  className="bg-green-500 text-white px-4 py-1 rounded mr-2 hover:bg-blue-600"
                   onClick={() => handleEdit(customer)}
                 >
                   Editar

@@ -25,12 +25,16 @@ const Navbar: React.FC<NavbarProps> = ({ onSearch }) => {
           <input id="customer-name" type="text" required class="swal2-input" placeholder="Nome" />
           <label for="customer-email">Email:</label>
           <input id="customer-email" type="email" required class="swal2-input" placeholder="Email" />
-          <label for="customer-doc">Documento:</label>
-          <input id="customer-doc" type="text" required class="swal2-input" placeholder="Documento" /> <!-- Renomeado para customer-doc -->
+          <label for="customer-doc">RG/CPF:</label>
+          <input id="customer-doc" type="text" required class="swal2-input" placeholder="RG/CPF" />
         </form>
-      `,
+        `,
       showCancelButton: true,
       confirmButtonText: 'Salvar',
+      customClass: {
+        confirmButton: 'bg-green-500 text-white',   // Classe para o botão de confirmação
+        cancelButton: 'bg-red-500 text-white'      // Classe para o botão de cancelamento
+      },
       preConfirm: async () => {
         const name = (document.getElementById('customer-name') as HTMLInputElement).value;
         const email = (document.getElementById('customer-email') as HTMLInputElement).value;
