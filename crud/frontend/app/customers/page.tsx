@@ -17,19 +17,16 @@ const CustomersPage = () => {
         console.error(error);
       }
     };
-    
-    {customers.map((customer) => (
-      <li key={customer.id}>{customer.name}</li>
-    ))}
-
-    
     customerList();
   }, []);
   
   return (
     <div>
       <div>
-        <h1>Lista de Clientes</h1>
+        <div className="pt-5 mt-5">
+          <h1 className="py-3 m-3 text-center text-3xl font-bold">Lista de Clientes</h1>
+        </div>
+
         <table className="min-w-full border-collapse border border-gray-300">
           <thead>
             <tr>
