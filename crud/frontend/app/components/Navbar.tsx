@@ -38,7 +38,7 @@ const Navbar: React.FC<NavbarProps> = ({ onSearch }) => {
       preConfirm: async () => {
         const name = (document.getElementById('customer-name') as HTMLInputElement).value;
         const email = (document.getElementById('customer-email') as HTMLInputElement).value;
-        const doc = (document.getElementById('customer-doc') as HTMLInputElement).value; // Renomeado para evitar conflito
+        const doc = (document.getElementById('customer-doc') as HTMLInputElement).value;
 
         if (!name || !email || !doc) {
           Swal.showValidationMessage('Preencha todos os campos.');
@@ -68,7 +68,7 @@ const Navbar: React.FC<NavbarProps> = ({ onSearch }) => {
           <img src="/img/logo-oriontec.webp" alt="Logo" />
         </div>
 
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-">
           <input
             type="text"
             placeholder="Pesquisar cliente..."
