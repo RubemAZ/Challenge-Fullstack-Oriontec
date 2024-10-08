@@ -9,6 +9,6 @@
   Node v20.17.0
   Express.js v4.21.0 <br/>
   TypeScript v5 <br/>
-  SGBD:  Firebird v5.0.1
+  SGBD:  Firebird v3.0
 
 // ### How to start : 
