@@ -1,8 +1,9 @@
 "use client";
 import React, { useState, useEffect } from 'react'
 import CustomersPage from './customers/page'
+
 const CustomersPageList = ({ searchQuery }: { searchQuery: string }) => {
-  const [customers, setCustomers] = useState<any[]>([]);
+  /*const [customers, setCustomers] = useState<any[]>([]);
   const [filteredCustomers, setFilteredCustomers] = useState<any[]>([]);
 
   // Função para buscar clientes no backend
@@ -31,11 +32,12 @@ const CustomersPageList = ({ searchQuery }: { searchQuery: string }) => {
   useEffect(() => {
     fetchCustomers();
   }, []);
+  So comentar pq podemos aproveitar este trecho depois
+  */
 
   return (
-    <div>
-      <CustomersPage/>
-    </div>
+    <>
+    </>
   );
 };
 
