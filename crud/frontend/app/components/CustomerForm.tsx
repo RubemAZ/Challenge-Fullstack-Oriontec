@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 interface CustomerFormProps {
   initialData?: { name?: string, email?: string, document?: string };
@@ -12,6 +14,18 @@ const CustomerForm: React.FC<CustomerFormProps> = ({ initialData = {}, onSubmit 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    console.log(e)
+    if (![11, 14].includes(document.length)) {
+      Swal.showValidationMessage("Documento inválido");
+      return false;
+    }
+
+    if (!name || !email || !document) {
+      Swal.showValidationMessage("Preencha todos os campos.");
+      return false;
+    }
+
     onSubmit({ name, email, document });
   };
 
@@ -47,7 +61,7 @@ const CustomerForm: React.FC<CustomerFormProps> = ({ initialData = {}, onSubmit 
           required
         />
       </div>
-      <button type="submit">Salvar</button>
+      <button type="button" onClick={handleSubmit}>Salvar</button>
     </form>
   );
 };

@@ -5,6 +5,7 @@ import withReactContent from "sweetalert2-react-content";
 import CustomerItem from "../components/CustomerItem";
 import { fetchCustomers, createCustomer } from "@/src/external/api/customers/customerService";
 import CustomerPresenter, { CustomerData } from "@/src/adapters/customers/CustomerPresenter";
+import CustomerModal from "../components/CustomerModal";
 
 interface CustomerSectionProps {
   onSearch: (query: string) => void;
@@ -96,7 +97,7 @@ const CustomersPage: FC<CustomerSectionProps> = ({ onSearch }) => {
               </div>
 
               <div className="mb-12">
-                <button onClick={handleAdd} className="rounded bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-9">
+                <button onClick={handleAdd} className="rounded bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-11">
                   + Adicionar Cliente
                 </button>
               </div>

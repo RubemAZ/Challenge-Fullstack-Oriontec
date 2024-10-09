@@ -18,9 +18,9 @@ const CustomerItem = ({ customer, onUpdate }: CustomerItemProps) => {
     MySwal.fire({
       title: 'Editar Cliente',
       html: `
-        <input id="customer-name" class="swal2-input" placeholder="Nome" value="${customer.name}" />
-        <input id="customer-email" class="swal2-input" placeholder="Email" value="${customer.email}" />
-        <input id="customer-document" class="swal2-input" placeholder="Documento" value="${customer.document}" />
+        <input type="text" id="customer-name" class="swal2-input" placeholder="Nome" value="${customer.name}" />
+        <input type="email" id="customer-email" class="swal2-input" placeholder="Email" value="${customer.email}" />
+        <input type="number" id="customer-document" class="swal2-input" placeholder="Documento" value="${customer.document}" />
       `,
       showCancelButton: true,
       confirmButtonText: 'Salvar',
@@ -31,13 +31,18 @@ const CustomerItem = ({ customer, onUpdate }: CustomerItemProps) => {
       preConfirm: () => {
         const name = (document.getElementById('customer-name') as HTMLInputElement).value;
         const email = (document.getElementById('customer-email') as HTMLInputElement).value;
-        const customerDocument = (document.getElementById('customer-document') as HTMLInputElement).value;
+        const doc = (document.getElementById('customer-document') as HTMLInputElement).value;
 
-        if (!name || !email || !customerDocument) {
+        if (![11, 14].includes(doc.length)) {
+          Swal.showValidationMessage("Documento inválido");
+          return false;
+        }
+
+        if (!name || !email || !doc) {
           Swal.showValidationMessage('Preencha todos os campos.');
           return false;
         }
-        return { id: customer.id, name, email, document: customerDocument };
+        return { id: customer.id, name, email, document: doc };
       }
     }).then(async (result) => {
       if (result.isConfirmed) {
