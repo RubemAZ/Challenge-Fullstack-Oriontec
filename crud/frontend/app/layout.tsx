@@ -9,20 +9,20 @@ interface LayoutProps {
 }
 
 const RootLayout = ({ children }: LayoutProps) => {
-  const [searchQuery, setSearchQuery] = useState(''); // Armazena a query de pesquisa
+  const [searchQuery, setSearchQuery] = useState('');
 
   return (
     <html lang="pt-BR">
       <head>
         <meta name="description" content="Aplicação para gerenciar registros de clientes." />
       </head>
-      <body className="min-h-screen flex flex-col bg-slate-300 text-gray-900">
+      <body className="bg-zinc-300 text-zinc-900">
         <Navbar/>
-        <main className="container mx-auto pt-10 flex-grow">
+        <main className="container mx-auto flex-grow">
           {React.cloneElement(children as React.ReactElement<any>, { searchQuery })}
         </main>
-        <footer className="p-4 bg-gray-800 text-white text-center mt-10">
-          <p>© 2024 Oriontec Desafio FullStack Sistema de Gerenciamento de Clientes</p>
+        <footer className="p-4 bg-zinc-800 text-white text-center fixed bottom-0 left-0 w-full z-50 mt-10">
+          <p>© 2024 Oriontec CRUD Web FullStack - Sistema de Gerenciamento de Clientes</p>
         </footer>
       </body>
     </html>

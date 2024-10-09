@@ -97,10 +97,10 @@ const CustomerItem = ({ customer }: CustomerItemProps) => {
 
   return (
     <tr key={customer.id}>
-      <td className="border border-gray-300 p-2">{customer.name}</td>
-      <td className="border border-gray-300 p-2">{customer.email}</td>
-      <td className="border border-gray-300 p-2">{customer.document}</td>
-      <td className="border border-gray-300 p-2 flex justify-center">
+      <td className="border border-gray-300 p-3">{customer.name}</td>
+      <td className="border border-gray-300 p-3">{customer.email}</td>
+      <td className="border border-gray-300 p-3">{customer.document}</td>
+      <td className="border border-gray-300 p-3 flex justify-center">
         <button
           className="bg-green-500 text-white px-4 py-1 rounded mr-2 hover:bg-green-600"
           onClick={() => handleEdit(customer)}
