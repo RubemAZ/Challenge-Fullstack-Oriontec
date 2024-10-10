@@ -6,9 +6,7 @@ const App = () => {
   
   return (
     <div className="">
-      <CustomerPage 
-        onCustomerAdded={() => {/* Handle customer added */}}
-      />
+      <CustomerPage/>
     </div>
   );
 };

@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
 
 interface CustomerSectionProps {
     onSearch: (query: string) => void
@@ -8,7 +6,6 @@ interface CustomerSectionProps {
   }     
 const CustomerSection:React.FC<CustomerSectionProps> = ({ onSearch }) => {
     const [searchQuery, setSearchQuery] = useState('');
-    const MySwal = withReactContent(Swal);
   
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearchQuery(e.target.value);

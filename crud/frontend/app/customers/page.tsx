@@ -6,11 +6,8 @@ import CustomerItem from "../components/CustomerItem";
 import { fetchCustomers, createCustomer } from "@/src/external/api/customers/customerService";
 import CustomerPresenter, { CustomerData } from "@/src/adapters/customers/CustomerPresenter";
 
-interface CustomerSectionProps {
-  onCustomerAdded: () => void;
-}
 
-const CustomersPage: FC<CustomerSectionProps> = ({ }) => {
+const CustomersPage: FC = ({ }) => {
   const MySwal = withReactContent(Swal);
   const [loading, setLoading] = useState<boolean>(false);
   const [customers, setCustomers] = useState<CustomerData[]>([]);
@@ -32,11 +29,11 @@ const CustomersPage: FC<CustomerSectionProps> = ({ }) => {
       html: `
         <form id="customer-form">
           <label for="customer-name">Nome:</label>
-          <input id="customer-name" type="text" required class="swal2-input" placeholder="Nome" />
+          <input id="customer-name" type="text" required class="swal2-input" placeholder="Nome"/>
           <label for="customer-email">Email:</label>
           <input id="customer-email" type="email" required class="swal2-input" placeholder="Email" />
           <label for="customer-doc">CNPJ/CPF:</label>
-          <input id="customer-doc" type="number" required class="swal2-input" placeholder="CNPJ/CPF" />
+          <input id="customer-doc" type="number" required class="swal2-input" placeholder="CNPJ/CPF" style="margin-left: 0;"/>
         </form>
       `,
       showCancelButton: true,
@@ -64,7 +61,7 @@ const CustomersPage: FC<CustomerSectionProps> = ({ }) => {
           await createCustomer({ name, email, document: doc });
           await loadCustomers(); // Atualiza a lista de clientes após adição
           return true;
-        } catch (error) {
+        } catch {
           Swal.showValidationMessage("Erro ao adicionar cliente.");
           return false;
         }
@@ -89,7 +86,7 @@ const CustomersPage: FC<CustomerSectionProps> = ({ }) => {
           </button>
         </div>
       </div>
-      
+
       <div className="grid justify-items-center">
 
 
@@ -113,7 +110,7 @@ const CustomersPage: FC<CustomerSectionProps> = ({ }) => {
           </table>
           ) : (
             <div className="grid grid-cols-1 mb-12">
-            <h1 className="text-slate-600 py-6 text-3xl text-center ">Nenhum Cliente Cadastrado.</h1>
+            {loading && <h1 className="text-slate-600 py-6 text-3xl text-center ">Carregando Lista de clientes.</h1>}
           </div>
           )}
         </div>

@@ -1,6 +1,13 @@
 import api from '@/src/adapters/http/api';
 
-export async function fetchCustomers(): Promise<any> {
+export interface CustomerData {
+  id: number;
+  name: string;
+  email: string;
+  document: string;
+}
+
+export async function fetchCustomers(): Promise<CustomerData[]> {
     const response = await api.get('/customers');
     if (response.status >= 400) {
       throw new Error('Erro ao buscar clientes.');

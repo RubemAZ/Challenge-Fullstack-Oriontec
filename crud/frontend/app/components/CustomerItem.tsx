@@ -5,7 +5,7 @@ import { CustomerData } from '@/src/adapters/customers/CustomerPresenter';
 import { updateCustomer } from '@/src/external/api/customers/updateCustomer';
 import { deleteCustomer } from '@/src/external/api/customers/deleteCustomer';
 
-interface CustomerItemProps {
+export interface CustomerItemProps {
   customer: CustomerData;
   onUpdate: () => void; // Função para atualizar a lista de clientes
 }
@@ -75,7 +75,7 @@ const CustomerItem = ({ customer, onUpdate }: CustomerItemProps) => {
         await deleteCustomer(customer.id);
         Swal.fire('Deletado!', 'O cliente foi deletado com sucesso.', 'success');
         onUpdate(); // Chama a função para atualizar a lista de clientes
-      } catch (error) {
+      } catch {
         Swal.fire('Erro!', 'Erro ao deletar o cliente.', 'error');
       }
     }
