@@ -1,15 +1,3 @@
 {
-    "outputDirectory": "dist",
-    "builds": [
-        {
-            "src": "dist/main/index.js",
-            "use": "@vercel/node"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "dist/main/index.js"
-        }
-    ]
+    "rewrites":[{"source":"/(.*)", "destination":"/"}]
 }
