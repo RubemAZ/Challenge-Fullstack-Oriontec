@@ -1,7 +1,7 @@
 "use client"; 
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import CustomerPresenter, { CustomerData } from '@/src/adapters/customers/CustomerPresenter';
+import { CustomerData } from '@/src/adapters/customers/CustomerPresenter';
 import { updateCustomer } from '@/src/external/api/customers/updateCustomer';
 import { deleteCustomer } from '@/src/external/api/customers/deleteCustomer';
 

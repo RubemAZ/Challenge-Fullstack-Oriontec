@@ -5,8 +5,6 @@ import withReactContent from "sweetalert2-react-content";
 import CustomerItem from "../components/CustomerItem";
 import { fetchCustomers, createCustomer } from "@/src/external/api/customers/customerService";
 import CustomerPresenter, { CustomerData } from "@/src/adapters/customers/CustomerPresenter";
-import CustomerModal from "../components/CustomerModal";
-
 interface CustomerSectionProps {
   onSearch: (query: string) => void;
   onCustomerAdded: () => void;
