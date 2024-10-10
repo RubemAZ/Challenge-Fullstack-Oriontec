@@ -5,16 +5,15 @@ import withReactContent from "sweetalert2-react-content";
 import CustomerItem from "../components/CustomerItem";
 import { fetchCustomers, createCustomer } from "@/src/external/api/customers/customerService";
 import CustomerPresenter, { CustomerData } from "@/src/adapters/customers/CustomerPresenter";
+
 interface CustomerSectionProps {
-  onSearch: (query: string) => void;
   onCustomerAdded: () => void;
 }
 
-const CustomersPage: FC<CustomerSectionProps> = ({ onSearch }) => {
+const CustomersPage: FC<CustomerSectionProps> = ({ }) => {
   const MySwal = withReactContent(Swal);
   const [loading, setLoading] = useState<boolean>(false);
   const [customers, setCustomers] = useState<CustomerData[]>([]);
-  const [searchQuery, setSearchQuery] = useState("");
 
   const loadCustomers = async () => {
     setLoading(true);
@@ -73,11 +72,6 @@ const CustomersPage: FC<CustomerSectionProps> = ({ onSearch }) => {
     });
   };
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
-    onSearch(e.target.value);
-  };
-
   return (
     <section className="bg-slate-100 py-32 m-9 shadow-xl rounded">
 
@@ -85,15 +79,6 @@ const CustomersPage: FC<CustomerSectionProps> = ({ onSearch }) => {
         <h1 className="text-slate-600 pb-20 text-3xl text-center ">Sistema de Gerenciamento de Clientes - Lista de clientes</h1>
           <div className="grid-rows-1">
             <div className="grid grid-cols-3">
-              <div className="">
-                <input type="text"
-                  placeholder="Pesquisar CPF/CNPJ ..."
-                  value={searchQuery}
-                  onChange={handleSearchChange}
-                  className="rounded border border-gray-300 p-3"
-                />
-              </div>
-
               <div className="mb-12">
                 <button onClick={handleAdd} className="rounded bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-11">
                   + Adicionar Cliente
