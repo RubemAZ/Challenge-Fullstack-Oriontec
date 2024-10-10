@@ -75,24 +75,23 @@ const CustomersPage: FC<CustomerSectionProps> = ({ }) => {
   return (
     <section className="bg-slate-100 py-32 m-9 shadow-xl rounded">
 
-      <div className="grid justify-items-center">
-        <h1 className="text-slate-600 pb-20 text-3xl text-center ">Sistema de Gerenciamento de Clientes - Lista de clientes</h1>
-          <div className="grid-rows-1">
-            <div className="grid grid-cols-3">
-              <div className="mb-12">
-                <button onClick={handleAdd} className="rounded bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-11">
-                  + Adicionar Cliente
-                </button>
-              </div>
-
-              <div className="mx-6 mb-12">
-                <button onClick={loadCustomers} className="rounded bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-11">
-                  🗘Atualizar Lista
-                </button>
-              </div>
-
-            </div>
+      <h1 className="text-slate-600 pb-20 text-3xl text-center ">Sistema de Gerenciamento de Clientes - Lista de clientes</h1>
+      <div className="grid grid-cols-3 text-end mb-12">
+        <div className="col-span-2 justify-end">
+          <button onClick={handleAdd} className="rounded bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-11">
+            + Adicionar Cliente
+          </button>
         </div>
+
+        <div className="justify-end mr-32">
+          <button onClick={loadCustomers} className="rounded bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-11">
+            🗘Atualizar Lista
+          </button>
+        </div>
+      </div>
+      
+      <div className="grid justify-items-center">
+
 
 
         <div className="mx-6 mb-12">
