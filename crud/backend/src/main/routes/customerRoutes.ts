@@ -1,5 +1,4 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import { z, ZodError } from 'zod';
 import CustomerController from '../controllers/customerController';
 import validateCustomerMiddleware from '../../external/web/middleware/validateCustomerMiddleware';
 
