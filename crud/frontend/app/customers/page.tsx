@@ -110,7 +110,7 @@ const CustomersPage: FC = ({ }) => {
           </table>
           ) : (
             <div className="grid grid-cols-1 mb-12">
-            {loading && <h1 className="text-slate-600 py-6 text-3xl text-center ">Carregando Lista de clientes.</h1>}
+            {loading && <h1 className="text-slate-600 py-6 text-3xl text-center ">Carregando Lista de clientes...</h1>}
           </div>
           )}
         </div>
