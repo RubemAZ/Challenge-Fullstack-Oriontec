@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import '../src/main'
 dotenv.config();
 
 const express = require("express");
