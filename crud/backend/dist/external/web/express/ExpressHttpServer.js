@@ -8,9 +8,8 @@ const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const customerRoutes_1 = __importDefault(require("../../../main/routes/customerRoutes"));
 class ExpressHttpServer {
-    constructor(port = 3000) {
+    constructor() {
         this.app = (0, express_1.default)();
-        this.port = port;
         this.setupMiddleware();
         this.setupRoutes();
     }
@@ -25,12 +24,10 @@ class ExpressHttpServer {
         });
         this.app.use('/api', customerRoutes_1.default);
     }
-    start() {
-        this.app.listen(this.port, () => {
-            console.log(`Server is running on http://localhost:${this.port}`);
-        });
+    getApp() {
+        return this.app;
     }
 }
+// Ao invés de iniciar o servidor com listen(), exportamos a instância do app
 const server = new ExpressHttpServer();
-server.start();
-exports.default = ExpressHttpServer;
+exports.default = server.getApp();
