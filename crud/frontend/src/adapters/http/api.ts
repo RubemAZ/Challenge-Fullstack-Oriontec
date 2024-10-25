@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const api = axios.create({
-    baseURL: 'oriontec-crud-api.vercel.app/api',
+    baseURL: 'https://challenge-fullstack-oriontec-backend.onrender.com/api',
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
