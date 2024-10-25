@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api/customers'; // Atualize com a URL da sua API
+const API_URL = 'https://challenge-fullstack-oriontec-backend.onrender.com/api/customers';
 
 export const updateCustomer = async (id: number, customerData: { name: string; email: string; document: string }) => {
   try {
