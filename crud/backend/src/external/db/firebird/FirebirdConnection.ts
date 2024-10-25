@@ -1,17 +1,19 @@
+import { env } from 'node:process';
 import firebird from 'node-firebird';
  
+const options: firebird.Options = {
+    host: 'localhost',
+    port: 3050,
+    database: `${process.cwd()}/${env.DATABASE_URL}`,
+    user: process.env.DB_USER, 
+    password: process.env.DB_PASSWORD,
+}
+
 class FirebirdConnection {
-    private static options: firebird.Options = {
-        host: process.env.DB_HOST,
-        port: 3050,
-        database: process.env.DATABASE_URL || `${process.cwd()}/src/domain/database/CLIENTDATA.FDB`,
-        user: process.env.DB_USER, 
-        password: process.env.DB_PASSWORD,
-    };
-    
     public static getConnection(): Promise<firebird.Database> {
+        console.log(options, process.env.DB_HOST)
         return new Promise((resolve, reject) => {
-            firebird.attach(FirebirdConnection.options, (err, db) => {
+            firebird.attach(options, (err, db) => {
                 if (err) {
                     console.log('CONNECTION ERROR', err)
                     return reject(err);

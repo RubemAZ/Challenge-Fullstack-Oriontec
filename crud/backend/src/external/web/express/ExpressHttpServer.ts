@@ -36,7 +36,4 @@ class ExpressHttpServer {
   }
 }
 
-const server = new ExpressHttpServer();
-server.start();
-
 export default ExpressHttpServer;  
